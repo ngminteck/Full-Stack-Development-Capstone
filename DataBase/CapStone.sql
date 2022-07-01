@@ -63,4 +63,3 @@ CREATE TABLE Purchase(
 	FOREIGN KEY (vehicle_id) REFERENCES Vehicle(vehicle_id),
     FOREIGN KEY (UserAccount) REFERENCES UserAccount(UserAccount)
 );
-
