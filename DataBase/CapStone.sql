@@ -12,8 +12,8 @@ CREATE TABLE Vehicle(
     vehicle_model_name VARCHAR(255) NOT NULL,
     'year' DATE NOT NULL,
     make ENUM('Make') NOT NULL,
-    mmodel ENUM('
-     
+    model ENUM('Model')NOT NULL
+	
 );
 
 CREATE TABLE User(
