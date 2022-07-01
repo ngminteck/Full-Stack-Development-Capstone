@@ -7,6 +7,7 @@ create table User(
     user_id integer primary key not null auto_increment,
     email varchar(50) not null unique,
     password varchar(255) not null,
+    is_admin boolean not null default false
 );
 
 
@@ -17,6 +18,7 @@ create table Post(
     body text not null,
     post_date date not null,
     expiry_date date default null,
+    is_approved boolean not null default false,
     user_id integer not null,
     constraint FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
