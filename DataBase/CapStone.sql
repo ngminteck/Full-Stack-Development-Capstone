@@ -28,7 +28,8 @@ CREATE TABLE Vehicle(
 DROP TABLE IF EXISTS UserAccount;
 CREATE TABLE UserAccount(
     user_id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+	last_name VARCHAR(255) NOT NULL,
 	emali VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
 	account_type ENUM('Disabled','Sales','Admin') NOT NULL
