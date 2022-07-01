@@ -5,4 +5,9 @@
     <fullyQualifiedTypeName name="javax.persistence.GeneratedValue"/>
     <fullyQualifiedTypeName name="javax.persistence.Column"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="com.DTO.User"/>
+    <fullyQualifiedTypeName name="com.DTO.Post"/>
+    <fullyQualifiedTypeName name="com.DTO.Category"/>
+    <fullyQualifiedTypeName name="com.DTO.Image"/>
+    <fullyQualifiedTypeName name="com.DTO.PostCategory"/>
 </qualifiedTypeNameHistroy>
