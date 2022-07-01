@@ -52,7 +52,6 @@ INDEX VERSION 1.131+D:\Full-Stack-Development-Capstone\Backend\.metadata\.plugin
 525113622.index
 2483963399.index
 113165886.index
-3435648363.index
 2933610478.index
 3338237414.index
 827857588.index
