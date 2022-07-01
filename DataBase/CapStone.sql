@@ -35,6 +35,7 @@ CREATE TABLE UserAccount(
 	account_type ENUM('Disabled','Sales','Admin') NOT NULL
 );
 
+
 DROP TABLE IF EXISTS ContactUS;
 CREATE TABLE ContactUS(
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -58,6 +59,8 @@ CREATE TABLE Purchase(
 	purchase_price decimal(8,2) default 0,
     purchase_type VARCHAR(255) NOT NULL,
     vehicle_id INT NOT NULL,
+	user_id INT NOT NULL,
 	FOREIGN KEY (vehicle_id) REFERENCES Vehicle(vehicle_id),
+    FOREIGN KEY (UserAccount) REFERENCES UserAccount(UserAccount)
 );
 
