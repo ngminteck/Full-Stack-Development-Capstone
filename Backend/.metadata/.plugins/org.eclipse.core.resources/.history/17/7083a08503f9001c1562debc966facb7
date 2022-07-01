@@ -1,0 +1,113 @@
+package com.DTO;
+
+import java.time.LocalDate;
+import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Post")
+public class Post {
+
+
+	private @Id @GeneratedValue Long postId;
+
+	private StringBuilder title;
+
+	private StringBuilder header;
+
+	private StringBuilder body;
+	
+	private LocalDate postDate;
+	
+	private LocalDate expireDate;
+	
+	private Long userID;
+
+	public Long getPostId() {
+		return postId;
+	}
+
+	public void setPostId(Long postId) {
+		this.postId = postId;
+	}
+
+	public StringBuilder getTitle() {
+		return title;
+	}
+
+	public void setTitle(StringBuilder title) {
+		this.title = title;
+	}
+
+	public StringBuilder getHeader() {
+		return header;
+	}
+
+	public void setHeader(StringBuilder header) {
+		this.header = header;
+	}
+
+	public StringBuilder getBody() {
+		return body;
+	}
+
+	public void setBody(StringBuilder body) {
+		this.body = body;
+	}
+
+	public LocalDate getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(LocalDate postDate) {
+		this.postDate = postDate;
+	}
+
+	public LocalDate getExpireDate() {
+		return expireDate;
+	}
+
+	public void setExpireDate(LocalDate expireDate) {
+		this.expireDate = expireDate;
+	}
+
+	public Long getUserID() {
+		return userID;
+	}
+
+	public void setUserID(Long userID) {
+		this.userID = userID;
+	}
+
+	@Override
+	public String toString() {
+		return "Page [postId=" + postId + ", title=" + title + ", header=" + header + ", body=" + body + ", postDate="
+				+ postDate + ", ExpireDate=" + expireDate + ", userID=" + userID + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(postId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Page other = (Page) obj;
+		return Objects.equals(postId, other.postId);
+	}
+
+   
+	
+	
+}
