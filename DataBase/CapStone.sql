@@ -56,5 +56,8 @@ CREATE TABLE Purchase(
     state VARCHAR(255) NOT NULL,
 	zip_code INT (255) NOT NULL,
 	purchase_price decimal(8,2) default 0,
-    purchase_type VARCHAR(255) NOT NULL
+    purchase_type VARCHAR(255) NOT NULL,
+    vehicle_id INT NOT NULL,
+	FOREIGN KEY (vehicle_id) REFERENCES Vehicle(vehicle_id),
 );
+
