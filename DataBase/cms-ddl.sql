@@ -1,8 +1,9 @@
-drop table ContentSystem;
-create database ContentSystem;
+drop database if exists ContentSystem;
+create database if not exists ContentSystem;
 
 use database ContentSystem;
 
+-- Tables
 create table User(
     user_id integer primary key not null auto_increment,
     email varchar(50) not null unique,
