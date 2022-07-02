@@ -11,47 +11,33 @@
 	<nav role="navigation" aria-label="main menu">
 		<ol class="navbar">
 			<li><a href="main.html">Home</a></li>
+			<li><a href="login.html">Login</a></li>
 			<li><a href="post.html">New Post</a></li>
 		</ol>
 	</nav>
 </header>
 
-<section role="button" aria-label="post tool">
-button like bold etc
-</section>
+<main>
 
-<section>
-<h4>Post Options</h4>
-<h3>
-<pre id="post-options" contenteditable= "true">
-Category type drop down option, expire date and etc
-</pre>
-</section>
+<form action="main.html" method="get">
+	<label for="post-category">Category</label>
+	<select name ="post-category" id="post-category">
+		<option>My Category 1</option>
+		<option>My Category 2</option>
+	</select>
+	<label for="post-expiredate">Expire Date</label>
+	<input name="post-expiredate" id="post-expiredate" type="date"required>
+	<label for="post-title">Title</label>
+	<input name="post-title" id="post-title" type="text" value = "My Title" required>
+	<label for="post-content">content</label>
+	<textarea name="post-content" id ="post-content" rows="30" cols="30" required></textarea>
+	<button type="submit">Post</button>
+	<button type="submit">Cancel</button>
 
-<section>
-</h3>
-<h3>Title</h3>
-<h1>
-<pre id="post-title" contenteditable= "true">
-My Title
-</pre>
-</h1>
-</section>
+</form>
+</main>
 
-<section>
-<h3>Content</h3>
-<textarea id = "post-body"contenteditable= "true">
-My Content
-</textarea>
-</section>
 
-<section role = "button">
-Save Cancel Delete
-</section>
-
-<footer>
-
-</footer>
 
 </body>
 </html>
