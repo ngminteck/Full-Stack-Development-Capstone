@@ -1,0 +1,32 @@
+Main main page
+Detail for read each bloh on detail as a new web page
+Login is for login
+Post for when create a new post
+Edit is quite similar like main page, but if can edit the post and also display expired post, for admin can check to approve
+
+ 
+
+h1 to h6
+em,i, strong, b
+ul unorder ol order list
+
+dl de list
+dt term
+dd definition
+
+
+p paragraph
+blockquoote
+q quote
+
+&lt;
+&gt;
+&amp
+
+br
+pre
+
+sup superscript
+sub subscript
+
+
