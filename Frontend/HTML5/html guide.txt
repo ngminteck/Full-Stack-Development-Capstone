@@ -1,8 +1,11 @@
 Main main page
-Detail for read each bloh on detail as a new web page
+Detail for read each blog on detail as a new web page
 Login is for login
+profile for edit profile like change password & email
 Post for when create a new post
-Edit is quite similar like main page, but if can edit the post and also display expired post, for admin can check to approve
+accountconfig for admin user config the account, like create account change password, change accounttype and etc
+postconfig for edit post, it will list all post, user can only edit their own post. once edit it need admin approve like new post.
+
 
  
 
