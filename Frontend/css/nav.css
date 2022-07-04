@@ -11,19 +11,21 @@
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
+  
+  
 }
 
 .nav li:first-child {
-  float: left;
+ float: left;
 }
 
 .nav li:nth-child(2) {
-  float: left;
+ float: left;
 }
 
 .nav li {
   float: right;
-  border-right:1px solid #bbb;
+  border:1px solid #bbb;
 }
 
 
