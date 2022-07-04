@@ -25,6 +25,10 @@ public class Post {
 	private LocalDate postDate;
 	@Column(name = "expiry_date", columnDefinition = "DATE")
 	private LocalDate expireDate;
+
+	@Column(name = "is_approved")
+	private boolean isApproved;
+
 	@Column(name = "user_id")
 	private Long userID;
 
@@ -74,6 +78,14 @@ public class Post {
 
 	public void setExpireDate(LocalDate expireDate) {
 		this.expireDate = expireDate;
+	}
+
+	public boolean isApproved() {
+		return isApproved;
+	}
+
+	public void setApproved(boolean approved) {
+		isApproved = approved;
 	}
 
 	public Long getUserID() {

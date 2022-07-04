@@ -19,6 +19,9 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
+	@Column(name = "is_admin")
+	private boolean isAdmin;
+
 	public Long getUserID() {
 		return userID;
 	}
@@ -41,6 +44,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean admin) {
+		isAdmin = admin;
 	}
 
 	@Override
