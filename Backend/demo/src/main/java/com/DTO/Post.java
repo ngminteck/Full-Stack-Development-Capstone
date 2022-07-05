@@ -32,6 +32,23 @@ public class Post {
 	@Column(name = "user_id")
 	private Long userID;
 
+	public Post() {
+
+	}
+
+	public Post(String title, String header,
+				String body, LocalDate postDate,
+				LocalDate expireDate, boolean isApproved,
+				Long userID) {
+		this.title = title;
+		this.header = header;
+		this.body = body;
+		this.postDate = postDate;
+		this.expireDate = expireDate;
+		this.isApproved = isApproved;
+		this.userID = userID;
+	}
+
 	public Long getPostId() {
 		return postId;
 	}
