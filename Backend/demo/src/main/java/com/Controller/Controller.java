@@ -82,6 +82,21 @@ public class Controller
 				new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
+	@GetMapping("/posts/?cat={category}")
+	public ResponseEntity<List<Post>> findPostByCategory(@PathVariable("category") String category) {
+		try {
+//			Long categoryId = categoryRepository.getCategoryId(category);
+//			Long postId = postCategoryRepository.getPostId(categoryId);
+			List<Post> posts = postRepository.findByCategory(category);
+			if(posts.isEmpty()) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 	@PostMapping("/posts")
 	public ResponseEntity<Post> createPost(@RequestBody Post post) {
 		try {
