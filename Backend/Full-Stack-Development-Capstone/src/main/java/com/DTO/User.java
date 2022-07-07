@@ -9,10 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="User")
+@Table(name="Account")
 public class User {
 
-	@Column(name = "user_id")
+	@Column(name = "account_id")
     private @Id @GeneratedValue Long userID;
 	@Column(name = "email")
 	private String email;

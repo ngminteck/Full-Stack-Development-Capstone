@@ -47,7 +47,7 @@ public class Controller
 		this.postCategoryRepository = postCategoryRepository;
 	}
 
-
+/*
 	@GetMapping("/posts")
 	public ResponseEntity<List<Post>> getApprovedPosts() {
 		try {
@@ -60,7 +60,7 @@ public class Controller
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+*/
 	@GetMapping("/posts/all")
 	public ResponseEntity<List<Post>> getAllPosts() {
 		try {
@@ -81,7 +81,7 @@ public class Controller
 				HttpStatus.OK)).orElseGet(() ->
 				new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
-
+/*
 	@GetMapping("/posts/?cat={category}")
 	public ResponseEntity<List<Post>> findPostByCategory(@PathVariable("category") String category) {
 		try {
@@ -96,7 +96,7 @@ public class Controller
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+*/
 	@PostMapping("/posts")
 	public ResponseEntity<Post> createPost(@RequestBody Post post) {
 		try {

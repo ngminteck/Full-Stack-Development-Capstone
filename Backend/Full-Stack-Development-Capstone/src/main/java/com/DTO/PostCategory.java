@@ -1,6 +1,5 @@
 package com.DTO;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Id;
@@ -16,11 +15,12 @@ import javax.persistence.Table;
 @IdClass(CompositeCatIDAndPostID.class)
 public class PostCategory {
 
-	@Column(name = "post_id")
-	private @Id Long postId;
 	
 	@Column(name = "category_id")
 	private @Id Long categoryId;
+
+	@Column(name = "post_id")
+	private @Id Long postId;
 
 	public Long getPostId() {
 		return postId;
