@@ -51,7 +51,7 @@ public class Controller
 	@GetMapping("/posts")
 	public ResponseEntity<List<Post>> getApprovedPosts() {
 		try {
-			List<Post> posts = postRepository.findByApproved(true);
+			List<Post> posts = postRepository.findByApproved();
 			if (posts.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}

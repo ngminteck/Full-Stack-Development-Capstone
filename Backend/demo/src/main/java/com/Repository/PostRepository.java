@@ -10,7 +10,11 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post,Long>{
-    List<Post> findByApproved(boolean b);
+    @Query("Select * from Post" +
+            "where is_approved = true" +
+            "and post_date <= current_date" +
+            "and expire_date > current_date")
+    List<Post> findByApproved();
     @Query("Select * from Post p " +
             "where is_approved = true" +
             "join PostCategory pc on pc.post_id = p.post_id" +
