@@ -2,22 +2,19 @@ package com.DTO;
 
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Image")
 public class Image {
 	
-	@Column(name = "image_id")
+	@Column(name = "image_id", nullable = false)
 	private @Id @GeneratedValue Long imageId;
-	@Column(name = "image_path")
+	@Column(name = "image_path", nullable = false)
 	private String imagePath;
-	@Column(name = "post_id")
-	private long postID;
+	@ManyToOne
+	@JoinColumn(name = "post_id", nullable = false)
+	private Post post;
 	public Long getImageId() {
 		return imageId;
 	}
@@ -30,15 +27,15 @@ public class Image {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-	public long getPostID() {
-		return postID;
+	public Post getPost() {
+		return post;
 	}
-	public void setPostID(long postID) {
-		this.postID = postID;
+	public void setPost(Post post) {
+		this.post = post;
 	}
 	@Override
 	public String toString() {
-		return "Image [imageId=" + imageId + ", imagePath=" + imagePath + ", postID=" + postID + "]";
+		return "Image [imageId=" + imageId + ", imagePath=" + imagePath + ", postID=" + post.getPostId() + "]";
 	}
 	@Override
 	public int hashCode() {

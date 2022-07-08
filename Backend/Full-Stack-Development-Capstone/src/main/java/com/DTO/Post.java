@@ -1,36 +1,40 @@
 package com.DTO;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Post")
 public class Post {
 
-	@Column(name = "post_id")
+	@Column(name = "post_id", nullable = false)
 	private @Id @GeneratedValue Long postId;
 	@Column(name = "title")
 	private String title;
-	@Column(name = "header")
+	@Column(name = "header", nullable = false)
 	private String header;
-	@Column(name = "body")
+	@Column(name = "body", nullable = false)
 	private String body;
-	@Column(name = "post_date", columnDefinition = "DATE")
+	@Column(name = "post_date", columnDefinition = "DATE", nullable = false)
 	private LocalDate postDate;
 	@Column(name = "expiry_date", columnDefinition = "DATE")
 	private LocalDate expireDate;
 
-	@Column(name = "is_approved")
+	@Column(name = "is_approved", nullable = false)
 	private boolean isApproved;
 
-	@Column(name = "user_id")
-	private Long userID;
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+
+	@ManyToMany
+	@JoinTable(name = "PostCategory",
+		joinColumns = {@JoinColumn(name = "post_id")},
+		inverseJoinColumns = {@JoinColumn(name = "category_id")})
+	private List<Category> categories;
 
 	public Post() {
 
@@ -39,14 +43,14 @@ public class Post {
 	public Post(String title, String header,
 				String body, LocalDate postDate,
 				LocalDate expireDate, boolean isApproved,
-				Long userID) {
+				User user) {
 		this.title = title;
 		this.header = header;
 		this.body = body;
 		this.postDate = postDate;
 		this.expireDate = expireDate;
 		this.isApproved = isApproved;
-		this.userID = userID;
+		this.user = user;
 	}
 
 	public Long getPostId() {
@@ -105,18 +109,18 @@ public class Post {
 		isApproved = approved;
 	}
 
-	public Long getUserID() {
-		return userID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserID(Long userID) {
-		this.userID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
 	public String toString() {
 		return "Page [postId=" + postId + ", title=" + title + ", header=" + header + ", body=" + body + ", postDate="
-				+ postDate + ", ExpireDate=" + expireDate + ", userID=" + userID + "]";
+				+ postDate + ", ExpireDate=" + expireDate + ", userID=" + user.getUserID() + "]";
 	}
 
 	@Override

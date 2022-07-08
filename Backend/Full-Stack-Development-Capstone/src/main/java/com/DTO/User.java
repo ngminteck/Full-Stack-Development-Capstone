@@ -12,14 +12,14 @@ import javax.persistence.Table;
 @Table(name="Account")
 public class User {
 
-	@Column(name = "account_id")
+	@Column(name = "account_id", nullable = false)
     private @Id @GeneratedValue Long userID;
-	@Column(name = "email")
+	@Column(name = "email", nullable = false)
 	private String email;
-	@Column(name = "password")
+	@Column(name = "password", nullable = false)
 	private String password;
 
-	@Column(name = "is_admin")
+	@Column(name = "is_admin", nullable = false)
 	private boolean isAdmin;
 
 	public Long getUserID() {

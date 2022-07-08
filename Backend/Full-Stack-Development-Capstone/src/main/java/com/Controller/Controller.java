@@ -47,6 +47,8 @@ public class Controller
 		this.postCategoryRepository = postCategoryRepository;
 	}
 
+
+
 /*
 	@GetMapping("/posts")
 	public ResponseEntity<List<Post>> getApprovedPosts() {
@@ -106,7 +108,7 @@ public class Controller
 
 			Post newPost = postRepository.save(new Post(post.getTitle(),
 					post.getHeader(), post.getBody(), post.getPostDate(),
-					post.getExpireDate(), currUser.isAdmin(), post.getUserID()));
+					post.getExpireDate(), currUser.isAdmin(), post.getUser()));
 			return new ResponseEntity<>(newPost, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
