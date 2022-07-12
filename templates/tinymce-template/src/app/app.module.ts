@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { AppComponent } from './app.component';
 import { NewPostComponent } from './new-post.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { NewPostComponent } from './new-post.component';
   ],
   imports: [
     BrowserModule,
-    EditorModule
+    EditorModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
