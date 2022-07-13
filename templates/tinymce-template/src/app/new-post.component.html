@@ -1,21 +1,27 @@
-<form >
-<label for="post-title">Title</label>
-<input name="post-title" id="post-title" type="text" value = "My Title" required>
-<label for="post-category">Category</label>
-<select name ="post-category" id="post-category">
-    <option *ngFor="let c of categoryGroup" >{{c.name}}</option>
+<form (ngSubmit) = "onSubmit(postForm)" #postForm="ngForm" >
+<label>Title</label>
+<input name ="name-title" [(ngModel)]="model.title" type="text" required>
+<label >Category</label>
+<select name="name-category"[(ngModel)]="model.category" required>
+    <option *ngFor="let c of categoryGroup" value={{c.id}} >{{c.name}}</option>
 </select>
-<label for="post-expiredate">Expire Date</label>
-<input name="post-expiredate" id="post-expiredate" type="date"required>
-<editor id="post-content"
+<label>Expire Date</label>
+<input name= "name-expiredate"[(ngModel)]="model.expireDate" type="date" required>
+<editor name = "name-content" [(ngModel)]="model.content"
   apiKey= xrzzz3pw8vlxxgwiupdjs8wwvshyln0vz0fbdgm8ndwuxr1j
-  [init]="{ plugins: 'lists link image table code help wordcount' }"
-></editor>
-<button  type="submit"  (click)="AddPost()">Create Post</button>
+  [init]="{
+    height: 1000,
+    plugins: [
+       'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+      'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+      'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+    ],
+    toolbar:
+     'undo redo | casechange blocks | bold italic backcolor | \
+     alignleft aligncenter alignright alignjustify | \
+     bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+  }"
+ 
+><</editor>
+<button  type="submit">Create Post</button>
 </form>
-
-<div *ngFor="let p of postThread" >
-<h1>Title:{{p.title}}</h1>
-<p>Content{{}p.Content}</p>
-<p>Expire Date{{}p.expireDate}</p>
-</div>

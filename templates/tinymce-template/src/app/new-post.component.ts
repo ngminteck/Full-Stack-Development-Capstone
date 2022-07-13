@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { FormGroup, FormControl } from '@angular/forms';
+import { NgForm } from '@angular/forms';
+import { DatePipe, formatDate } from '@angular/common'
 
 @Component({
   selector: 'app-new-post',
@@ -17,43 +18,62 @@ export class NewPostComponent implements OnInit {
   
 
  
-  postThread: Array<Post> = new Array;
+  model: Post = new Post();
   postId:number = 0;
  
-            
-  constructor() { }
 
-  ngOnInit(): void {
-
+  constructor() 
+  { 
+    
   }
 
-  AddPost()
-  {
-      let newPost = new Post();
-      ++this.postId;
-      newPost.postId = this.postId;
-      newPost.title = (document.getElementById("post-title") as HTMLInputElement).value;
-      newPost.content = (document.getElementById("post-content") as HTMLInputElement).value;
-      newPost.categoryID = (document.getElementById("post-category") as HTMLInputElement).value;
-      newPost.expireDate = new Date(Date.parse((document.getElementById("post-expiredate") as HTMLInputElement).value));
-      newPost.editBy = 0;
-      newPost.lastUpdateDate = new Date();
+  ngOnInit(): void {
+   
+  }
 
-      this.postThread.push(newPost);
+  onSubmit(f: any){
+    
+    this.model.title = this.model.header;
+    this.model.lastEditDate = formatDate(new Date(), 'yyyy-MM-dd', 'en_US');
+    this.model.lastEditUser = 1;
+    this.model.isApproved = false;
+    
+    console.log(this.model);
+
   }
 }
 
 export class Post
 {
   postId:number | undefined;
-  title:string | undefined ;
+  title:string | undefined;
+  header:string | undefined;
   content:string | undefined;
-  categoryID:string | undefined;
-  expireDate:Date | undefined;
+  lastEditDate:string | undefined;
+  expireDate:string | undefined;
+  category:number | undefined;
+  lastEditUser:number | undefined;
+  isApproved:boolean |undefined;
   
-  editBy:number | undefined;
-  lastUpdateDate:Date | undefined;
+
+  constructor() 
+  {
+    this.postId = 0;
+    this.header = "My Title";
+    this.title = this.header;
+    this.content = "My Content";
+    this.lastEditDate = formatDate(new Date(), 'yyyy-MM-dd', 'en_US');
+    let date = new Date();
+    this.expireDate = formatDate(date.setDate(date.getDate() + 30), 'yyyy-MM-dd', 'en_US');
+    this.category = 1;
+    this.lastEditUser = 1;
+    this.isApproved = false;
+
+  }
+
+  
 
 }
+
 
 
