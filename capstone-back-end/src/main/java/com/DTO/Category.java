@@ -16,7 +16,13 @@ public class Category
 
 	@ManyToMany(mappedBy = "categories")
 	private List<Post> posts;
+	
+	
 
+	public Category(String categoryName) {
+		super();
+		this.categoryName = categoryName;
+	}
 	public Long getCategoryId() {
 		return categoryId;
 	}

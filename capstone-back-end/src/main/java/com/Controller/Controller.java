@@ -3,6 +3,7 @@ package com.Controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.DTO.Category;
 import com.DTO.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -150,5 +151,18 @@ public class Controller
 	List<User> getAll(){
 		return userRepository.findAll();
 	}
+	
+	@PostMapping("/category/create")
+	public ResponseEntity<Category> createCategory(@RequestBody Category data){
+		Category newData = categoryRepository.save(data);
+		return new ResponseEntity<>(newData, HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/category/all")
+	List<Category> getAllCategory(){
+		return categoryRepository.findAll();
+	}
+	
+	
 	
 }
