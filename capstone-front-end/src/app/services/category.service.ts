@@ -47,6 +47,7 @@ export class CategoryService {
 
   constructor() { }
 
+
   public getCategories(): any {
     const categoryObservable = new Observable(observer => {
       setTimeout(() => {
