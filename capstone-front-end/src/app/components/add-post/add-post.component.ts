@@ -1,5 +1,8 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/app/models/category';
+import { Post, Post2 } from 'src/app/models/post.model';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-add-post',
@@ -8,20 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddPostComponent implements OnInit {
 
-  categoryGroup = [ 
-    {id: 1, name: "Category 1" },
-    {id: 2, name: "Category 2" },
-    {id: 3, name: "Category 3" }
-  ];
-
-
-
- model: Post = new Post();
+ model: Post2 = new Post2();
+ categories:Category[]=[];
  postId:number = 0;
 
-  constructor() { }
+
+  constructor(private categoryservice: CategoryService) { }
 
   ngOnInit(): void {
+    const categoriesObservable = this.categoryservice.getCategories();
+    categoriesObservable.subscribe((categoriesData: Category[]) => {
+          this.categories = categoriesData;
+      });
   }
 
   onSubmit(f: any){
@@ -34,34 +35,4 @@ export class AddPostComponent implements OnInit {
     console.log(this.model);
 
   }
-}
-
-export class Post
-{
-  post_id:number | undefined;
-  title:string | undefined;
-  header:string | undefined;
-  content:string | undefined;
-  post_date:string | undefined;
-  expiry_date:string | undefined;
-  category_id:number | undefined;
-  user_id:number | undefined;
-  is_approved:boolean |undefined;
-  
-
-  constructor() 
-  {
-    this.post_id = 0;
-    this.header = "My Title";
-    this.title = this.header;
-    this.content = "My Content";
-    this.post_date = formatDate(new Date(), 'yyyy-MM-dd', 'en_US');
-    let date = new Date();
-    this.expiry_date = formatDate(date.setDate(date.getDate() + 30), 'yyyy-MM-dd', 'en_US');
-    this.category_id = 1;
-    this.user_id = 1;
-    this.is_approved = false;
-
-  }
-
 }

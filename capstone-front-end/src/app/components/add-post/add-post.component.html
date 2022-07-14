@@ -3,7 +3,7 @@
     <input name ="name-title" [(ngModel)]="model.title" type="text" required>
     <label >Category</label>
     <select name="name-category"[(ngModel)]="model.category_id" required>
-        <option *ngFor="let c of categoryGroup" value={{c.id}} >{{c.name}}</option>
+        <option *ngFor="let c of categories" value={{c.category_id}} >{{c.category_name}}</option>
     </select>
     <label>Expire Date</label>
     <input name= "name-expiredate"[(ngModel)]="model.expiry_date" type="date" required>
@@ -23,6 +23,10 @@
       }"
      
     ><</editor>
+    <button>Cancel</button>
     <button  type="submit">Create Post</button>
+    <button  type="submit">Edit Post</button>
+    <button>Delete Post</button>
+    
     </form>
     
