@@ -17,7 +17,7 @@ public class Category
 	@ManyToMany(mappedBy = "categories")
 	private List<Post> posts;
 	
-	
+	public Category(){}
 
 	public Category(String categoryName) {
 		super();
