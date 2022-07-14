@@ -2,28 +2,26 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../models/category';
-const baseUrl = 'http://localhost:80800/category'
+const baseUrl = 'http://localhost:8080/category'
 
-/*
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-*/
 
-@Injectable({
-  providedIn: 'root'
-})
+
+@Injectable({providedIn: 'root'})
 export class CategoryService {
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${baseUrl}/all`);
+    return this.http.get<Category[]>(`${baseUrl}/all`,httpOptions);
   }
 
 
   create(data: Category): Observable<any> {
-    return this.http.post<Category>(baseUrl, data);
+    return this.http.post<Category>(baseUrl, data, httpOptions);
   }
 /*
   category:Category[] = [

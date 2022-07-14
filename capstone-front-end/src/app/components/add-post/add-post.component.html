@@ -1,13 +1,13 @@
 <form (ngSubmit) = "onAddNewCategory(catForm)" #catForm="ngForm">
   <label>Category Name</label>
-  <input name ="name-categoryname" [(ngModel)]="catModel.category_name" type="text" required>
+  <input name ="name-categoryname" [(ngModel)]="catModel.categoryName" type="text" required>
   <button  type="submit">Add New Category</button>
 </form>
 
 <form (ngSubmit) = "onSubmit(postForm)" #postForm="ngForm" >
   <label >Category</label>
   <select name="name-category"[(ngModel)]="model.category_id" required>
-      <option *ngFor="let c of categories" value={{c.category_id}} >{{c.category_name}}</option>
+      <option *ngFor="let c of categories" value={{c.categoryId}} >{{c.categoryName}}</option>
   </select>
   <label>Title</label>
   <input name ="name-title" [(ngModel)]="model.title" type="text" required>

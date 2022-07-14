@@ -1,11 +1,11 @@
 export class Category {
-    category_id: number | undefined;
-    category_name: string | undefined;
+    categoryId: number | undefined;
+    categoryName: string | undefined;
 
     constructor()
     {
-        this.category_id = 0;
-        this.category_name = "New Category Name";
+        this.categoryId = 0;
+        this.categoryName = "New Category Name";
 
     }
 }

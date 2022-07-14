@@ -13,7 +13,7 @@ export class AddPostComponent implements OnInit {
 
  model: Post2 = new Post2();
  catModel :Category = new Category();
- categories:Array<Category> = new Array<Category>();
+ categories:Category[] = [];
  postId:number = 0;
 
 
@@ -26,7 +26,7 @@ export class AddPostComponent implements OnInit {
 
   onAddNewCategory(f: any)
   {
-    this.catModel.category_id = 0;
+    this.catModel.categoryId = 0;
     this.categoryservice.create(this.catModel);
     this.UpdateCategory();
 
@@ -37,6 +37,7 @@ export class AddPostComponent implements OnInit {
     const categoriesObservable = this.categoryservice.getAll();
     categoriesObservable.subscribe((categoriesData: Category[]) => {
           this.categories = categoriesData;
+          console.log(categoriesData);
       });
   }
 
