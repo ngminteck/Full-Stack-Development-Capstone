@@ -27,7 +27,7 @@ public class Post {
 	private boolean isApproved;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = false)
+	@JoinColumn(name = "account_id", nullable = false)
 	private User user;
 
 	@ManyToMany

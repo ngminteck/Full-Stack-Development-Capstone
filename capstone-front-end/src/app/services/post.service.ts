@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from '../models/post.model'
 import { Observable } from 'rxjs';
-const baseUrl = 'http://localhost:5050/post'
+
+
+const baseUrl = 'http://localhost:8080/post'
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +14,11 @@ export class PostService {
   constructor(private http: HttpClient) { }
   
   getApproved(): Observable<Post[]> {
-    return this.http.get<Post[]>(baseUrl);
+    return this.http.get<Post[]>('http://localhost:8080/posts');
   }
   
   getAll(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${baseUrl}/all`);
+    return this.http.get<Post[]>('http://localhost:8080/posts/all');
   }
 
   get(id: number): Observable<Post> {

@@ -76,7 +76,7 @@ public class Controller
 		}
 	}
 
-	@GetMapping("/posts/{id}")
+	@GetMapping("/post/{id}")
 	public ResponseEntity<Post> getPostById(@PathVariable("id") Long id) {
 		Optional<Post> postData = postRepository.findById(id);
 		return postData.map(post -> new ResponseEntity<>(post,
@@ -115,7 +115,7 @@ public class Controller
 		}
 	}
 
-	@PutMapping("/posts/{id}")
+	@PutMapping("/post/{id}")
 	public ResponseEntity<Post> updatePost(@PathVariable("id") Long id, @RequestBody Post post) {
 		Optional<Post> postData = postRepository.findById(id);
 
@@ -131,7 +131,7 @@ public class Controller
 		} else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@DeleteMapping("/posts/{id}")
+	@DeleteMapping("/post/{id}")
 	public ResponseEntity<HttpStatus> deletePost(@PathVariable("id") Long id) {
 		try {
 			postRepository.deleteById(id);
