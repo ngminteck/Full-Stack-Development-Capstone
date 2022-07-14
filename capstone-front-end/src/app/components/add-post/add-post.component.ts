@@ -27,14 +27,14 @@ export class AddPostComponent implements OnInit {
   onAddNewCategory(f: any)
   {
     this.catModel.category_id = 0;
-
+    this.categoryservice.create(this.catModel);
     this.UpdateCategory();
 
   }
 
   UpdateCategory()
   {
-    const categoriesObservable = this.categoryservice.getCategories();
+    const categoriesObservable = this.categoryservice.getAll();
     categoriesObservable.subscribe((categoriesData: Category[]) => {
           this.categories = categoriesData;
       });
