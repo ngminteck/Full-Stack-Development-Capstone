@@ -12,13 +12,28 @@ import { CategoryService } from 'src/app/services/category.service';
 export class AddPostComponent implements OnInit {
 
  model: Post2 = new Post2();
- categories:Category[]=[];
+ catModel :Category = new Category();
+ categories:Array<Category> = new Array<Category>();
  postId:number = 0;
 
 
   constructor(private categoryservice: CategoryService) { }
 
   ngOnInit(): void {
+    this.UpdateCategory()
+      
+  }
+
+  onAddNewCategory(f: any)
+  {
+    this.catModel.category_id = 0;
+
+    this.UpdateCategory();
+
+  }
+
+  UpdateCategory()
+  {
     const categoriesObservable = this.categoryservice.getCategories();
     categoriesObservable.subscribe((categoriesData: Category[]) => {
           this.categories = categoriesData;

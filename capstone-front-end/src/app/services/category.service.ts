@@ -31,17 +31,17 @@ export class CategoryService {
   category:Category[] = [
     {
       category_id:1,
-      category_name:'Promotion'
+      category_name:'Other'
        
     },
     {
       category_id:2,
-      category_name:'Discount'
+      category_name:'Sale'
        
     },
     {
       category_id:3,
-      category_name:'Sale'
+      category_name:'Promotion'
     }
   ]
 
