@@ -10,12 +10,11 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post,Long>{
-   /* List<Post> findByApproved(boolean b);
-    @Query("Select * from Post p " +
-            "where is_approved = true" +
-            "join PostCategory pc on pc.post_id = p.post_id" +
-            "join Category c on c.category_id = pc.category_id" +
-            "having c.category_name like ?1")
-    List<Post> findByCategory(String categoryName);*/
+    List<Post> findByIsApproved(boolean b);
+    @Query(value = "SELECT p.* FROM Post p" +
+            "JOIN PostCategory pc ON pc.post_id = p.post_id" +
+            "JOIN Category c ON c.category_id = pc.category_id" +
+            "WHERE is_approved = true AND c.category_name like ?1", nativeQuery = true)
+    List<Post> findByCategory(String categoryName);
 	
 }

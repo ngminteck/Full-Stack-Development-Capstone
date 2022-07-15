@@ -1,5 +1,6 @@
 package com.Controller;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,20 +50,20 @@ public class Controller
 
 
 
-/*
+
 	@GetMapping("/posts")
 	public ResponseEntity<List<Post>> getApprovedPosts() {
 		try {
-			List<Post> posts = postRepository.findByApproved(true);
+			List<Post> posts = postRepository.findByIsApproved(true);
 			if (posts.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(posts, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-*/
+
 	@GetMapping("/posts/all")
 	public ResponseEntity<List<Post>> getAllPosts() {
 		try {
@@ -70,7 +71,7 @@ public class Controller
 			if (posts.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(posts, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -83,22 +84,22 @@ public class Controller
 				HttpStatus.OK)).orElseGet(() ->
 				new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
-/*
-	@GetMapping("/posts/?cat={category}")
+
+	@GetMapping("/post?cat={category}")
 	public ResponseEntity<List<Post>> findPostByCategory(@PathVariable("category") String category) {
 		try {
 //			Long categoryId = categoryRepository.getCategoryId(category);
-//			Long postId = postCategoryRepository.getPostId(categoryId);
+//			List<Long> postId = postCategoryRepository.getPostId(categoryId);
 			List<Post> posts = postRepository.findByCategory(category);
 			if(posts.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(posts, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-*/
+
 	@PostMapping("/posts")
 	public ResponseEntity<Post> createPost(@RequestBody Post post) {
 		try {

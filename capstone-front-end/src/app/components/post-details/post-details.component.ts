@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/models/post.model';
 import { PostService } from 'src/app/services/post.service';
 
@@ -7,48 +8,62 @@ import { PostService } from 'src/app/services/post.service';
   templateUrl: './post-details.component.html',
   styleUrls: ['./post-details.component.css']
 })
+
 export class PostDetailsComponent implements OnInit {
+  post: Post | undefined;
 
-  posts?: Post[];
-  currPost: Post = {};
-  currIdx = -1;
-  category = '';
-
-  constructor(private postService: PostService) { }
+  constructor(private route: ActivatedRoute,
+              private postService: PostService) { }
 
   ngOnInit(): void {
-    this.getPosts();
+      this.getPost();
   }
 
-  getPosts(): void {
-    this.postService.getApproved()
-      .subscribe({
-        next: (data) => {
-            this.posts = data;
-            console.log(data);
-        },
-        error: (e) => console.error(e)
-      });
+  getPost(): void {
+    const postId = Number(this.route.snapshot.paramMap.get('id'));
+    this.postService.get(postId).subscribe(post => this.post = post);
   }
 
-  refreshPosts(): void {
-    this.getPosts();
-    this.currPost = {};
-    this.currIdx = -1;
-  }
+  // posts?: Post[];
+  // currPost: Post = {};
+  // currIdx = -1;
+  // category = '';
 
-  searchCategory(): void {
-    this.currPost = {};
-    this.currIdx = -1;
+  // constructor(private postService: PostService) { }
 
-    this.postService.findByCategory(this.category)
-      .subscribe({
-        next: (data) => {
-          this.posts = data;
-          console.log(data);
-        },
-        error: (e) => console.error(e)
-      });
-  }
+  // ngOnInit(): void {
+  //   this.getPosts();
+  // }
+
+  // getPosts(): void {
+  //   this.postService.getApproved()
+  //     .subscribe({
+  //       next: (data) => {
+  //           this.posts = data;
+  //           console.log(data);
+  //       },
+  //       error: (e) => console.error(e)
+  //     });
+  // }
+
+  // refreshPosts(): void {
+  //   this.getPosts();
+  //   this.currPost = {};
+  //   this.currIdx = -1;
+  // }
+
+  // searchCategory(): void {
+  //   this.currPost = {};
+  //   this.currIdx = -1;
+
+  //   this.postService.findByCategory(this.category)
+  //     .subscribe({
+  //       next: (data) => {
+  //         this.posts = data;
+  //         console.log(data);
+  //       },
+  //       error: (e) => console.error(e)
+  //     });
+  // }
 
 }
