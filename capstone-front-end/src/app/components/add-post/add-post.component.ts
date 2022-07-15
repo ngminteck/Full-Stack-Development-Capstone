@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { Post, Post2 } from 'src/app/models/post.model';
 import { CategoryService } from 'src/app/services/category.service';
+import axios from 'axios';
 
 @Component({
   selector: 'app-add-post',
@@ -34,11 +35,20 @@ export class AddPostComponent implements OnInit {
 
   UpdateCategory()
   {
-    const categoriesObservable = this.categoryservice.getAll();
-    categoriesObservable.subscribe((categoriesData: Category[]) => {
-          this.categories = categoriesData;
-          console.log(categoriesData);
-      });
+    // TODO fix this error, response is not showing up
+    // const categoriesObservable = this.categoryservice.getAll();
+    // categoriesObservable.subscribe((categoriesData: Category[]) => {
+    //       this.categories = categoriesData;
+    //       console.log(categoriesData);
+    //   });
+
+    axios.get("http://localhost:8080/category/all")
+    .then((response)=>{
+      this.categories = response.data;
+    })
+    .catch((err)=>{
+      console.log(err); 
+    })
   }
 
   onSubmit(f: any){
