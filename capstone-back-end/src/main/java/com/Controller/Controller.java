@@ -154,12 +154,17 @@ public class Controller
 	
 	@PostMapping("/category/create")
 	public ResponseEntity<Category> createCategory(@RequestBody Category data){
-		Category newData = categoryRepository.save(data);
-		return new ResponseEntity<>(newData, HttpStatus.CREATED);
+		System.out.println("createCategory");
+		System.out.println(data);
+		Category newData = new Category(data.getCategoryName());
+		
+		categoryRepository.save(newData);
+		return new ResponseEntity<Category>(newData, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/category/all")
+	@GetMapping("/category/get/all")
 	List<Category> getAllCategory(){
+		System.out.println("getAllCategory");
 		return categoryRepository.findAll();
 	}
 	

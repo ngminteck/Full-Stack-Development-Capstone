@@ -10,9 +10,12 @@ import javax.persistence.*;
 public class Category 
 {
 	@Column(name = "category_id")
-	private @Id @GeneratedValue Long categoryId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long category_id;
+	
 	@Column(name = "category_name")
-	private String categoryName;
+	private String category_name;
 
 	@ManyToMany(mappedBy = "categories")
 	private List<Post> posts;
@@ -20,28 +23,25 @@ public class Category
 	public Category(){};
 
 	public Category(String categoryName) {
-		super();
-		this.categoryName = categoryName;
+		this.category_name = categoryName;
 	}
 	public Long getCategoryId() {
-		return categoryId;
+		return category_id;
 	}
-	public void setCategoryId(Long categoryId) {
-		this.categoryId = categoryId;
-	}
+
 	public String getCategoryName() {
-		return categoryName;
+		return category_name;
 	}
 	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+		this.category_name = categoryName;
 	}
 	@Override
 	public String toString() {
-		return "Category [categoryId=" + categoryId + ", categoryName=" + categoryName + "]";
+		return "Category [categoryId=" + category_id + ", categoryName=" + category_name + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(categoryId);
+		return Objects.hash(category_id);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -52,7 +52,7 @@ public class Category
 		if (getClass() != obj.getClass())
 			return false;
 		Category other = (Category) obj;
-		return Objects.equals(categoryId, other.categoryId);
+		return Objects.equals(category_id, other.category_id);
 	}
 	
 	

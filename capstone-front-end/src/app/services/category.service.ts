@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse, HttpRequest, HttpBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../models/category';
@@ -15,12 +15,16 @@ export class CategoryService {
 
   constructor(private http: HttpClient) { }
 
+
+
   getAll(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${baseUrl}/all`,httpOptions);
+  
+    
+    return this.http.get<Category[]>(`http://localhost:8080/category/get/all`);
   }
 
 
-  create(data: Category): Observable<any> {
+  create(data: Category): Observable<Category> {
     return this.http.post<Category>(baseUrl, data, httpOptions);
   }
 /*

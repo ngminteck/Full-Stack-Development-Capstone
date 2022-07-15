@@ -18,31 +18,34 @@ export class AddPostComponent implements OnInit {
  postId:number = 0;
 
 
-  constructor(private categoryservice: CategoryService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.UpdateCategory()
+    this.onGetAllCategory()
       
   }
 
   onAddNewCategory(f: any)
   {
-    this.catModel.categoryId = 0;
-    this.categoryservice.create(this.catModel);
-    this.UpdateCategory();
+    console.log("onAddNewCategory");
+    axios.post("http://localhost:8080/category/create",{
+      category_Id:this.catModel.categoryId,
+      category_Name:this.catModel.categoryName
+    }).then(function (response) 
+    {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    this.onGetAllCategory();
 
   }
 
-  UpdateCategory()
+  onGetAllCategory()
   {
-    // TODO fix this error, response is not showing up
-    // const categoriesObservable = this.categoryservice.getAll();
-    // categoriesObservable.subscribe((categoriesData: Category[]) => {
-    //       this.categories = categoriesData;
-    //       console.log(categoriesData);
-    //   });
-
-    axios.get("http://localhost:8080/category/all")
+    console.log("onGetAllCategory");
+    axios.get("http://localhost:8080/category/get/all")
     .then((response)=>{
       this.categories = response.data;
     })
