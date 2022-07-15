@@ -23,6 +23,7 @@ import com.Repository.UserRepository;
 @CrossOrigin(origins = "http://localhost:8080")
 public class Controller 
 {
+	
 
 	@Autowired
 	private final UserRepository userRepository;
@@ -152,6 +153,7 @@ public class Controller
 		return userRepository.findAll();
 	}
 	
+	
 	@PostMapping("/category/create")
 	public ResponseEntity<Category> createCategory(@RequestBody Category data){
 		System.out.println("createCategory");
@@ -161,6 +163,7 @@ public class Controller
 		categoryRepository.save(newData);
 		return new ResponseEntity<Category>(newData, HttpStatus.CREATED);
 	}
+	
 	
 	@GetMapping("/category/get/all")
 	List<Category> getAllCategory(){

@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { Post, Post2 } from 'src/app/models/post.model';
 import { CategoryService } from 'src/app/services/category.service';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
+
+
 
 @Component({
   selector: 'app-add-post',
@@ -18,7 +20,9 @@ export class AddPostComponent implements OnInit {
  postId:number = 0;
 
 
-  constructor() { }
+  constructor() { 
+    
+  }
 
   ngOnInit(): void {
     this.onGetAllCategory()
@@ -28,9 +32,11 @@ export class AddPostComponent implements OnInit {
   onAddNewCategory(f: any)
   {
     console.log("onAddNewCategory");
+    console.log(this.catModel.categoryName);
     axios.post("http://localhost:8080/category/create",{
-      category_Id:this.catModel.categoryId,
-      category_Name:this.catModel.categoryName
+      categoryName:this.catModel.categoryName,
+      categoryId:this.catModel.categoryId
+      
     }).then(function (response) 
     {
       console.log(response);
@@ -45,6 +51,7 @@ export class AddPostComponent implements OnInit {
   onGetAllCategory()
   {
     console.log("onGetAllCategory");
+    
     axios.get("http://localhost:8080/category/get/all")
     .then((response)=>{
       this.categories = response.data;
