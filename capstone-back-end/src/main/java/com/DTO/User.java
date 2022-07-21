@@ -5,6 +5,7 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,7 +14,9 @@ import javax.persistence.Table;
 public class User {
 
 	@Column(name = "account_id", nullable = false)
-    private @Id @GeneratedValue Long userID;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userID;
 	@Column(name = "email", nullable = false)
 	private String email;
 	@Column(name = "password", nullable = false)

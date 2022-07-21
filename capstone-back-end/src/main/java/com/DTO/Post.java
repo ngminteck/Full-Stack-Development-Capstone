@@ -11,7 +11,9 @@ import javax.persistence.*;
 public class Post {
 
 	@Column(name = "post_id", nullable = false)
-	private @Id @GeneratedValue Long postId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long postId;
 	@Column(name = "title")
 	private String title;
 	@Column(name = "header", nullable = false)

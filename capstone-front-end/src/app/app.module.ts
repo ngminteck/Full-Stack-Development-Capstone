@@ -13,12 +13,16 @@ import { AddPostModule } from './pages/add-post/add-post.module';
 
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { FormsModule } from '@angular/forms';
+import { EditorComponent } from './components/editor/editor.component';
+import { CatergoryFormComponent } from './components/catergory-form/catergory-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    EditorComponent,
+    CatergoryFormComponent
   ],
   imports: [
     BrowserModule,
