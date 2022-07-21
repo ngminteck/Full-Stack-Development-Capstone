@@ -31,10 +31,15 @@ public class Post {
 	private User user;
 
 	@ManyToMany
-	@JoinTable(name = "PostCategory",
+	@JoinTable(name = "postcategory",
 		joinColumns = {@JoinColumn(name = "post_id")},
 		inverseJoinColumns = {@JoinColumn(name = "category_id")})
 	private List<Category> categories;
+
+	@ManyToMany
+	@JoinTable(name="image",
+		joinColumns = {@JoinColumn(name="post_id")})
+	private List<Image> images;
 
 	public Post() {
 

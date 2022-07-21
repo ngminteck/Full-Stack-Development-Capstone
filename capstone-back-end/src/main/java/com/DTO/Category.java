@@ -12,10 +12,16 @@ public class Category
 	@Column(name = "category_id")
 	private @Id @GeneratedValue Long categoryId;
 	@Column(name = "category_name")
+<<<<<<< Updated upstream
 	private String categoryName;
 
 	@ManyToMany(mappedBy = "categories")
 	private List<Post> posts;
+=======
+	private String category_name;
+	
+	public Category(){};
+>>>>>>> Stashed changes
 
 	public Long getCategoryId() {
 		return categoryId;

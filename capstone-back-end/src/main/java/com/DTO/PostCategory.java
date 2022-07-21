@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="PostCategory")
+@Table(name="postcategory")
 @IdClass(CompositeCatIDAndPostID.class)
 public class PostCategory {
 
@@ -21,6 +21,8 @@ public class PostCategory {
 
 	@Column(name = "post_id")
 	private @Id Long postId;
+
+	
 
 	public Long getPostId() {
 		return postId;
