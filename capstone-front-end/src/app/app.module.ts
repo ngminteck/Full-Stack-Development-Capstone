@@ -1,30 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { EditorModule } from '@tinymce/tinymce-angular';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddPostComponent } from './components/add-post/add-post.component';
-import { PostDetailsComponent } from './components/post-details/post-details.component';
-import { LoginComponent } from './pages/login/login.component';
-import { PostsComponent } from './pages/posts/posts.component';
-import { PostComponent } from './pages/post/post.component';
-import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
-import { InMemoryDataService } from './services/in-memory-data.service';
+import { PostsModule } from './pages/posts/posts.module';
+import { PostModule } from './pages/post/post.module';
+import { AddPostModule } from './pages/add-post/add-post.module';
+
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddPostComponent,
-    PostDetailsComponent,
-    LoginComponent,
-    PostsComponent,
-    PostComponent,
-    AdminPanelComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -32,10 +26,9 @@ import { InMemoryDataService } from './services/in-memory-data.service';
     EditorModule,
     FormsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
-
+    PostsModule,
+    PostModule,
+    AddPostModule
   ],
   providers: [],
   bootstrap: [AppComponent]

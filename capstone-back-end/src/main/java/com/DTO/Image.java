@@ -5,16 +5,14 @@ import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Image")
+@Table(name="image")
 public class Image {
 	
 	@Column(name = "image_id", nullable = false)
 	private @Id @GeneratedValue Long imageId;
 	@Column(name = "image_path", nullable = false)
 	private String imagePath;
-	@ManyToOne
-	@JoinColumn(name = "post_id", nullable = false)
-	private Post post;
+
 	public Long getImageId() {
 		return imageId;
 	}
@@ -27,15 +25,9 @@ public class Image {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-	public Post getPost() {
-		return post;
-	}
-	public void setPost(Post post) {
-		this.post = post;
-	}
 	@Override
 	public String toString() {
-		return "Image [imageId=" + imageId + ", imagePath=" + imagePath + ", postID=" + post.getPostId() + "]";
+		return "Image [imageId=" + imageId + ", imagePath=" + imagePath + "]";
 	}
 	@Override
 	public int hashCode() {

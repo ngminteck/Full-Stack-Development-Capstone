@@ -1,11 +1,8 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category';
-import { Post, Post2 } from 'src/app/models/post.model';
-import { CategoryService } from 'src/app/services/category.service';
-import axios, { Axios } from 'axios';
-
-
+import { Post} from 'src/app/models/post.model';
+import axios from 'axios';
 
 @Component({
   selector: 'app-add-post',
@@ -14,7 +11,7 @@ import axios, { Axios } from 'axios';
 })
 export class AddPostComponent implements OnInit {
 
- model: Post2 = new Post2();
+ model: Post = new Post();
  catModel :Category = new Category();
  categories:Category[] = [];
  postId:number = 0;
@@ -31,8 +28,6 @@ export class AddPostComponent implements OnInit {
 
   onAddNewCategory(f: any)
   {
-    console.log("onAddNewCategory");
-    console.log(this.catModel.categoryName);
     axios.post("http://localhost:8080/category/create",{
       categoryName:this.catModel.categoryName,
       categoryId:this.catModel.categoryId
@@ -50,8 +45,6 @@ export class AddPostComponent implements OnInit {
 
   onGetAllCategory()
   {
-    console.log("onGetAllCategory");
-    
     axios.get("http://localhost:8080/category/get/all")
     .then((response)=>{
       this.categories = response.data;
@@ -64,9 +57,9 @@ export class AddPostComponent implements OnInit {
   onSubmit(f: any){
     
     this.model.title = this.model.header;
-    this.model.post_date = formatDate(new Date(), 'yyyy-MM-dd', 'en_US');
-    this.model.user_id = 1;
-    this.model.is_approved = false;
+    this.model.postDate = formatDate(new Date(), 'yyyy-MM-dd', 'en_US');
+    this.model.userId = 1;
+    this.model.isApproved = false;
     
     console.log(this.model);
 

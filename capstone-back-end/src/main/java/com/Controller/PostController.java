@@ -20,51 +20,31 @@ import com.Repository.PostRepository;
 import com.Repository.UserRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
-public class Controller 
+@CrossOrigin(origins = "*")
+public class PostController 
 {
 	
 
 	@Autowired
 	private final UserRepository userRepository;
 	@Autowired
-	private final ImageRepository imagerRepository;
+	private final ImageRepository imageRepository;
 	@Autowired
 	private final PostRepository postRepository;
-	@Autowired
-	private final CategoryRepository categoryRepository;
 	@Autowired
 	private final PostCategoryRepository postCategoryRepository;
 	
  
 	
 	
-	public Controller(UserRepository userRepository, ImageRepository imagerRepository, PostRepository postRepository,
-			CategoryRepository categoryRepository, PostCategoryRepository postCategoryRepository) {
+	public PostController(UserRepository userRepository, ImageRepository imageRepository, PostRepository postRepository, PostCategoryRepository postCategoryRepository) {
 		super();
 		this.userRepository = userRepository;
-		this.imagerRepository = imagerRepository;
+		this.imageRepository = imageRepository;
 		this.postRepository = postRepository;
-		this.categoryRepository = categoryRepository;
 		this.postCategoryRepository = postCategoryRepository;
 	}
 
-
-
-/*
-	@GetMapping("/posts")
-	public ResponseEntity<List<Post>> getApprovedPosts() {
-		try {
-			List<Post> posts = postRepository.findByApproved(true);
-			if (posts.isEmpty()) {
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			}
-			return new ResponseEntity<>(HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-*/
 	@GetMapping("/posts/all")
 	public ResponseEntity<List<Post>> getAllPosts() {
 		try {
@@ -72,7 +52,7 @@ public class Controller
 			if (posts.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(posts, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -105,21 +85,18 @@ public class Controller
 	public ResponseEntity<Post> createPost(@RequestBody Post post) {
 		try {
 			// check if user is admin
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			User currUser = (User) auth.getPrincipal();
+			// Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			// User currUser = (User) auth.getPrincipal();
 
 			Post newPost = postRepository.save(new Post(post.getTitle(),
 					post.getHeader(), post.getBody(), post.getPostDate(),
-					post.getExpireDate(), currUser.isAdmin(), post.getUser()));
+					post.getExpireDate(), true, post.getUser()));
 			return new ResponseEntity<>(newPost, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-
-	
-
 	@PutMapping("/posts/{id}")
 	public ResponseEntity<Post> updatePost(@PathVariable("id") Long id, @RequestBody Post post) {
 		Optional<Post> postData = postRepository.findById(id);
@@ -146,31 +123,8 @@ public class Controller
 		}
 	}
 
-
-
 	@GetMapping("/users")
 	List<User> getAll(){
 		return userRepository.findAll();
-	}
-	
-	
-	@PostMapping("/category/create")
-	public ResponseEntity<Category> createCategory(@RequestBody Category data){
-		System.out.println("createCategory");
-		System.out.println(data);
-		Category newData = new Category(data.getCategoryName());
-		
-		categoryRepository.save(newData);
-		return new ResponseEntity<Category>(newData, HttpStatus.CREATED);
-	}
-	
-	
-	@GetMapping("/category/get/all")
-	List<Category> getAllCategory(){
-		System.out.println("getAllCategory");
-		return categoryRepository.findAll();
-	}
-	
-	
-	
+	}	
 }
