@@ -65,9 +65,11 @@
           "configurations": {
             "production": {
               "browserTarget": "DemoApp:build:production"
+			  
             },
             "development": {
               "browserTarget": "DemoApp:build:development"
+			  
             }
           },
           "defaultConfiguration": "development"

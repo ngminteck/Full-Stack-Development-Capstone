@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import com.DTO.Category;
 import com.DTO.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ import com.Repository.UserRepository;
 @CrossOrigin(origins = "http://localhost:8080")
 public class Controller 
 {
+	
 
 	@Autowired
 	private final UserRepository userRepository;
@@ -115,6 +117,9 @@ public class Controller
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+
+	
 
 	@PutMapping("/post/{id}")
 	public ResponseEntity<Post> updatePost(@PathVariable("id") Long id, @RequestBody Post post) {
@@ -148,5 +153,25 @@ public class Controller
 	List<User> getAll(){
 		return userRepository.findAll();
 	}
+	
+	
+	@PostMapping("/category/create")
+	public ResponseEntity<Category> createCategory(@RequestBody Category data){
+		System.out.println("createCategory");
+		System.out.println(data);
+		Category newData = new Category(data.getCategoryName());
+		
+		categoryRepository.save(newData);
+		return new ResponseEntity<Category>(newData, HttpStatus.CREATED);
+	}
+	
+	
+	@GetMapping("/category/get/all")
+	List<Category> getAllCategory(){
+		System.out.println("getAllCategory");
+		return categoryRepository.findAll();
+	}
+	
+	
 	
 }
