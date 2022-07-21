@@ -30,6 +30,7 @@ public class Post {
 	@JoinColumn(name = "account_id", nullable = false)
 	private User user;
 
+
 	@ManyToMany
 	@JoinTable(name = "postcategory",
 		joinColumns = {@JoinColumn(name = "post_id")},

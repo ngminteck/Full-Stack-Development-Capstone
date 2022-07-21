@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/models/post.model';
 import { PostService } from 'src/app/services/post.service';
 
@@ -11,24 +10,19 @@ import { PostService } from 'src/app/services/post.service';
 })
 
 export class PostComponent implements OnInit {
-  @Input() post: Post = <Post>{};
+  post: Post = <Post>{};
+  post_id: number = 0;
 
-  constructor(
-            ) { }
-
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute,
+    private postService: PostService) { 
+    this.route.params.subscribe(params => this.post_id = params['id'])
   }
 
-  // ngOnInit(): void {
-  //   this.post$ = this.route.paramMap.pipe(
-  //     switchMap((params: ParamMap) =>
-  //       this.postService.get(parseInt(params.get('id')!)))
-  //   );
-  // }
+  ngOnInit(): void {
+    this.getPostDetails();
+  }
 
-  // goToPost(post: Post) {
-  //   const postId = post ? post.postId : null;
-  //   this.router.navigate(['/post', { postId: postId }]);
-  // }
-
+  getPostDetails = ():void => {
+    this.postService.get(this.post_id).subscribe(post => this.post = post);
+  }
 }

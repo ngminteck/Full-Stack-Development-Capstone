@@ -9,7 +9,7 @@ const httpOptions = {
   })
 };
 
-const baseUrl = 'http://localhost:8080/post'
+const baseUrl = 'http://localhost:8080/posts'
 
 @Injectable({
   providedIn: 'root'
