@@ -27,35 +27,6 @@ export class CategoryService {
   create(data: Category): Observable<Category> {
     return this.http.post<Category>(baseUrl, data, httpOptions);
   }
-/*
-  category:Category[] = [
-    {
-      category_id:1,
-      category_name:'Other'
-       
-    },
-    {
-      category_id:2,
-      category_name:'Sale'
-       
-    },
-    {
-      category_id:3,
-      category_name:'Promotion'
-    }
-  ]
 
-  constructor() { }
-
-  public getCategories(): any {
-    const categoryObservable = new Observable(observer => {
-      setTimeout(() => {
-        observer.next(this.category);
-      }, 10000);
-    });
-
-    return categoryObservable;
-  }
-  */
 }
 
