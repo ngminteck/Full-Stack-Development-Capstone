@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import com.DTO.User;
 import com.Repository.CategoryRepository;
 import com.Repository.ImageRepository;
-import com.Repository.PostCategoryRepository;
 import com.Repository.PostRepository;
 import com.Repository.UserRepository;
 
@@ -31,18 +30,17 @@ public class PostController
 	private final ImageRepository imageRepository;
 	@Autowired
 	private final PostRepository postRepository;
-	@Autowired
-	private final PostCategoryRepository postCategoryRepository;
+	
 	
  
 	
 	
-	public PostController(UserRepository userRepository, ImageRepository imageRepository, PostRepository postRepository, PostCategoryRepository postCategoryRepository) {
+	public PostController(UserRepository userRepository, ImageRepository imageRepository, PostRepository postRepository) {
 		super();
 		this.userRepository = userRepository;
 		this.imageRepository = imageRepository;
 		this.postRepository = postRepository;
-		this.postCategoryRepository = postCategoryRepository;
+		
 	}
 
 	@GetMapping("/posts/all")
@@ -65,36 +63,20 @@ public class PostController
 				HttpStatus.OK)).orElseGet(() ->
 				new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
-/*
-	@GetMapping("/posts/?cat={category}")
-	public ResponseEntity<List<Post>> findPostByCategory(@PathVariable("category") String category) {
-		try {
-//			Long categoryId = categoryRepository.getCategoryId(category);
-//			Long postId = postCategoryRepository.getPostId(categoryId);
-			List<Post> posts = postRepository.findByCategory(category);
-			if(posts.isEmpty()) {
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			}
-			return new ResponseEntity<>(HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-*/
-	@PostMapping("/posts")
-	public ResponseEntity<Post> createPost(@RequestBody Post post) {
-		try {
-			// check if user is admin
-			// Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			// User currUser = (User) auth.getPrincipal();
 
-			Post newPost = postRepository.save(new Post(post.getTitle(),
-					post.getHeader(), post.getBody(), post.getPostDate(),
-					post.getExpireDate(), true, post.getUser()));
-			return new ResponseEntity<>(newPost, HttpStatus.CREATED);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	
+	@PostMapping("/posts/create")
+	public ResponseEntity<Post> newPost(@RequestBody Post data) {
+		
+		System.out.println("createPost");
+		System.out.println(data);
+		
+		Post newData = new Post(data.getTitle(),
+				data.getHeader(), data.getBody(), data.getPostDate(),
+				data.getExpireDate(), data.isApproved(), data.getUserID() /*, data.getCategoryID()*/);
+		
+		postRepository.save(newData);
+		return new ResponseEntity<Post>(newData, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/posts/{id}")
@@ -127,4 +109,6 @@ public class PostController
 	List<User> getAll(){
 		return userRepository.findAll();
 	}	
+	
+	
 }

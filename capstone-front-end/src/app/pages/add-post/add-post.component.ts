@@ -6,6 +6,8 @@ import { Category } from 'src/app/models/category';
 import { Post } from 'src/app/models/post.model';
 
 
+
+
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
@@ -16,30 +18,12 @@ export class AddPostComponent implements OnInit {
   catModel: Category = new Category();
   model: Post = new Post();
   categories:Category[] = [];
-  buttonText:String | undefined 
+  buttonText:String = "Create Post";
 
-  tmpPostid:number = 0;
+ 
 
   constructor() { 
     this.onGetAllCategory();
-
-    this.model.postId = this.tmpPostid;
-    // tmpPostid need to be constructor parameter
-    // create
-    if(this.tmpPostid<= 0)
-    {
-        this.buttonText = "Create Post";
-    }
-    // edit
-    else
-    {
-        this.buttonText = "Update Post";
-        this.onGetPostInfo;
-    }
-
-
-
-     
 
 
 
@@ -91,6 +75,24 @@ export class AddPostComponent implements OnInit {
     
     console.log(this.model);
 
+    axios.post("http://localhost:8080/posts/create",{
+      postId: this.model.postId,
+      title: this.model.title,
+      header: this.model.header,
+      body: this.model.body,
+      postDate: this.model.postDate,
+      expireDate: this.model.expireDate,
+      userID: this.model.userId,
+      approved: this.model.isApproved /*,
+      categoryId:this.model.categoryId*/
+      
+    }).then(function (response) 
+    {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
     
 
   }

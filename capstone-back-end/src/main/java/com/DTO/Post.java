@@ -22,22 +22,19 @@ public class Post {
 	private String body;
 	@Column(name = "post_date", columnDefinition = "DATE", nullable = false)
 	private LocalDate postDate;
-	@Column(name = "expiry_date", columnDefinition = "DATE")
+	@Column(name = "expiry_date", columnDefinition = "DATE" )
 	private LocalDate expireDate;
 
 	@Column(name = "is_approved", nullable = false)
 	private boolean isApproved;
-
-	@ManyToOne
-	@JoinColumn(name = "account_id", nullable = false)
-	private User user;
-
-
-	@ManyToMany
-	@JoinTable(name = "postcategory",
-		joinColumns = {@JoinColumn(name = "post_id")},
-		inverseJoinColumns = {@JoinColumn(name = "category_id")})
-	private List<Category> categories;
+	
+	@Column(name = "account_id", nullable = false)
+	private Long userID;
+	
+	/*
+	@Column(name = "category_id", nullable = false)
+	private Long categoryID;
+	*/
 
 	@ManyToMany
 	@JoinTable(name="image",
@@ -47,20 +44,35 @@ public class Post {
 	public Post() {
 
 	}
-
+	
 	public Post(String title, String header,
-				String body, LocalDate postDate,
-				LocalDate expireDate, boolean isApproved,
-				User user) {
-		this.title = title;
-		this.header = header;
-		this.body = body;
-		this.postDate = postDate;
-		this.expireDate = expireDate;
-		this.isApproved = isApproved;
-		this.user = user;
-	}
+			String body, LocalDate postDate,
+			LocalDate expireDate, boolean isApproved,
+			Long userID) {
+	this.title = title;
+	this.header = header;
+	this.body = body;
+	this.postDate = postDate;
+	this.expireDate = expireDate;
+	this.isApproved = isApproved;
+	this.userID =userID;
 
+}
+	/*
+	public Post(String title, String header,
+			String body, LocalDate postDate,
+			LocalDate expireDate, boolean isApproved,
+			Long userID, Long categoryID) {
+	this.title = title;
+	this.header = header;
+	this.body = body;
+	this.postDate = postDate;
+	this.expireDate = expireDate;
+	this.isApproved = isApproved;
+	this.userID =userID;
+	this.categoryID = categoryID;
+}
+	*/
 	public Long getPostId() {
 		return postId;
 	}
@@ -116,19 +128,28 @@ public class Post {
 	public void setApproved(boolean approved) {
 		isApproved = approved;
 	}
-
-	public User getUser() {
-		return user;
+	
+	public Long getUserID() {
+		return userID;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserID(Long userID) {
+		this.userID = userID;
+	}
+	/*
+	public Long getCategoryID() {
+		return categoryID;
 	}
 
+	public void setCategoryID(Long categoryID) {
+		this.categoryID = categoryID;
+	}
+*/
+	
 	@Override
 	public String toString() {
 		return "Page [postId=" + postId + ", title=" + title + ", header=" + header + ", body=" + body + ", postDate="
-				+ postDate + ", ExpireDate=" + expireDate + ", userID=" + user.getUserID() + "]";
+				+ postDate + ", ExpireDate=" + expireDate + ", userID=" + userID +  ", catergoryID=" /*+ categoryID*/ +  "]";
 	}
 
 	@Override
@@ -147,6 +168,8 @@ public class Post {
 		Post other = (Post) obj;
 		return Objects.equals(postId, other.postId);
 	}
+
+
 
    
 	
